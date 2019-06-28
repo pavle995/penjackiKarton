@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const keys = require("./config/keys")
 
 require("./models/User");
 require("./services/passport.js");
@@ -16,46 +17,15 @@ mongoose.connect(
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json());
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: "testCookieKey"
-  })
-);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.get("/api/current_user", async (req, res) => {
-  res.send(req.user);
-});
-
-app.post(
-  "/login",
-  passport.authenticate('local'),
-  function(req, res){
-    console.log("body parsing", req.body)
-    res.send(req.user)
-  }
-);
-
-app.post('/auth',passport.authenticate('local'), function(req, res){
-  console.log("body parsing", req.body);
-  //should be something like: {username: YOURUSERNAME, password: YOURPASSWORD}
-});
-
-app.post("/signup", async (req, res, next) => {
-  console.log(req.body)
-  let newUser = new User({username: req.body.name, email: req.body.email});
-
-  newUser.setPassword(req.body.password)
-
-  const user = await newUser.save()
-
-  res.send(user)
-})
+require('./routes/userRoutes')(app)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
