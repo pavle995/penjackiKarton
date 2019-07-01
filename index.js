@@ -1,24 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys")
+const expressSession = require('express-session')
 
 require("./models/User");
 require("./services/passport.js");
 
 const User = mongoose.model("users");
 
+console.log(keys.mongoURI)
+
 mongoose.connect(
-  "mongodb://admin:admin995@ds241647.mlab.com:41647/penjacki_karton"
+  keys.mongoURI
 );
 
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(bodyParser.json());
+app.use(expressSession({ secret: keys.sessionSecret, resave: false, saveUninitialized: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());

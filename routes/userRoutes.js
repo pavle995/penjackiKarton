@@ -3,8 +3,6 @@ const passport = require('passport');
 module.exports = app => {
 
 	app.get("/api/current_user", async (req, res) => {
-		console.log("current_user")
-		console.log(req.session.passport)
   		res.send(req.user);
 	});
 
@@ -12,9 +10,7 @@ module.exports = app => {
 	  "/login",
 	  passport.authenticate('local', { failureRedirect: '/login' }),
 	  function(req, res){
-	  	console.log("login")
-	  	console.log(req.session.passport)
-	    res.redirect('/')
+	    res.send('Uspesno')
 	  }
 	);
 
@@ -34,7 +30,7 @@ module.exports = app => {
 	})
 
 	app.get('/api/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    	req.logout();
+    	res.redirect('/');
   });
 }
