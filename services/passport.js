@@ -16,11 +16,11 @@ passport.deserializeUser((id, done) => {
 
 passport.use(
   new LocalStrategy({
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password'
   },
-    function(username, password, done) {
-      User.findOne({ username: username }).then(user => {
+    function(email, password, done) {
+      User.findOne({ username: email }).then(user => {
         if (user == null) {
           return done(null, false, { message: "Nepostojeći username" });
         }

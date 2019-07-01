@@ -1,8 +1,9 @@
 const passport = require('passport');
+const requireLogin = require('../middlewares/requireLogin')
 
 module.exports = app => {
 
-	app.get("/api/current_user", async (req, res) => {
+	app.get("/api/current_user", requireLogin, async (req, res) => {
   		res.send(req.user);
 	});
 
@@ -29,7 +30,7 @@ module.exports = app => {
 	  res.send(user)
 	})
 
-	app.get('/api/logout', (req, res) => {
+	app.get('/api/logout', requireLogin, (req, res) => {
     	req.logout();
     	res.redirect('/');
   });

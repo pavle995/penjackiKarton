@@ -1,0 +1,47 @@
+-user:
+  -ime
+  -prezime
+  -email
+  -planinarsko drustvo
+  -datum rodjenja
+  -datum pocetnog letnjeg
+  -datum pocetnog zimskog
+  -datum naprednog letnjeg
+  -datum naprednog zimskog
+  -alpinisticki odsek
+  -datum sticanja zvanja alpiniste
+  -datum sticanja zvanja instruktora
+
+-smer:
+  -masiv
+  -stena
+  -ime
+  -prviPenjaci
+  -datum
+  -ocena
+  -visina
+  -duzina
+  -pristup
+  -opis
+  -silaz
+  -opisDao
+  -napomena
+  -slika/skica ?
+  -vrstaSmeri(S, LD, LS)
+  -nadmorska visina izlaza
+  -1P, 2P, 3P, TS, 1ZP, ZP, ZPP, PR, ZPR
+
+-uspon:
+  -datum
+  -supenjaci
+  -vremenePenjanja
+  -predlogOcene
+  -vrsta Smera(S, LD, LS)
+  -visina Smera
+  -nadmorska visina izlaza
+  -1P, 2P, 3P, TS, 1ZP, ZP, ZPP, PR, ZPR
+
+
+-odsek:
+  -nacelnik
+  -ime
