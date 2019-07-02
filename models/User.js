@@ -3,10 +3,20 @@ var crypto = require('crypto')
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
-  email: String,
-  hash: String,
-  salt: String
+  ime: {type: String, required: true},
+  prezime: {type: String, required: true},
+  plDrustvo: {type: String, required: true},
+  datumRodjenja: {type: Date, required: true},
+  datumPocetniLetnjiKurs: Date,
+  datumPocetniZimskiKurs: Date,
+  datumNapredniLetnjiKurs: Date,
+  datumNapredniZimskiKurs: Date,
+  odsek: {type: String, required: true},
+  datumZvanjaAlpiniste: Date,
+  datumZvanjaInstruktora: Date,
+  email: {type: String, required: true},
+  hash: {type: String, required: true},
+  salt: {type: String, required: true}
 });
 
 userSchema.methods.setPassword = function(password) {
@@ -23,3 +33,4 @@ userSchema.methods.validPassword = function(password) {
 };
 
 const User = module.exports = mongoose.model("users", userSchema);
+
