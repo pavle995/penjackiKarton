@@ -6,11 +6,10 @@ const keys = require("./config/keys")
 const expressSession = require('express-session')
 
 require("./models/User");
+require("./models/Smer");
 require("./services/passport.js");
 
 const User = mongoose.model("users");
-
-console.log(keys.mongoURI)
 
 mongoose.connect(
   keys.mongoURI
@@ -29,5 +28,7 @@ app.use(passport.session());
 app.get("/", (req, res) => res.send("Hello World!"));
 
 require('./routes/userRoutes')(app)
+require('./routes/smerRoutes')(app)
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

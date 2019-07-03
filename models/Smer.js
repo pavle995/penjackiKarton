@@ -14,22 +14,10 @@ const smerSchema = new Schema({
 	opis: String,
 	silaz: String,
 	opisDao: String,
-	napomena: String
-	/*
-	ime: {type: String, required: true},
-  prezime: {type: String, required: true},
-  plDrustvo: {type: String, required: true},
-  datumRodjenja: {type: Date, required: true},
-  datumPocetniLetnjiKurs: Date,
-  datumPocetniZimskiKurs: Date,
-  datumNapredniLetnjiKurs: Date,
-  datumNapredniZimskiKurs: Date,
-  odsek: {type: String, required: true},
-  datumZvanjaAlpiniste: Date,
-  datumZvanjaInstruktora: Date,
-  email: {type: String, required: true},
-  hash: {type: String, required: true},
-  salt: {type: String, required: true}/*/
+	napomena: String,
+	slika: { data: Buffer, contentType: String },
+	vrstaSmera: String,
+	nvIzlaza: Number
 });
 
-const User = module.exports = mongoose.model("smerovi", smerSchema);
+const User = module.exports = mongoose.model("routes", smerSchema);
