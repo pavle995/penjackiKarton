@@ -7,6 +7,7 @@ const expressSession = require('express-session')
 
 require("./models/User");
 require("./models/Smer");
+require("./models/Uspon");
 require("./services/passport.js");
 
 const User = mongoose.model("users");
@@ -29,6 +30,7 @@ app.get("/", (req, res) => res.send("Hello World!"));
 
 require('./routes/userRoutes')(app)
 require('./routes/smerRoutes')(app)
+require('./routes/usponRoutes')(app)
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

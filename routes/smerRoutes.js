@@ -7,7 +7,6 @@ module.exports = app => {
 
 	app.get("/api/smer", async (req, res) => {
   		var smer = await Smer.find({ime: req.query.ime})
-  		console.log(smer)
   		res.send(smer)
   	});
 
@@ -44,13 +43,14 @@ module.exports = app => {
 				if (key == 'id') {
 					return;
 				}
-				smer.key = req.body[key]
-				console.log(req.body[key])
-				console.log(smer.key)
-				console.log(smer)
+				smer[key] = req.body[key]
 			})
-			console.log(smer)
 			newSmer = await smer.save()
 			res.send(newSmer)
 		})
+
+	app.delete("/api/smer", async (req, res) => {
+		var smer = await Smer.deleteOne({_id: req.body.id})
+		res.send(smer)
+	})
 }

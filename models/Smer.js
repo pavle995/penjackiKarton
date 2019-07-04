@@ -20,4 +20,4 @@ const smerSchema = new Schema({
 	nvIzlaza: Number
 });
 
-const User = module.exports = mongoose.model("routes", smerSchema);
+module.exports = mongoose.model("routes", smerSchema);
