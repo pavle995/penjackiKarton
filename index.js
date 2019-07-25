@@ -17,7 +17,7 @@ mongoose.connect(
 );
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(bodyParser.json());
 app.use(expressSession({ secret: keys.sessionSecret, resave: false, saveUninitialized: false }));
@@ -27,6 +27,7 @@ app.use(passport.session());
 
 
 app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/test", (req, res) => res.send("Hello World!"));
 
 require('./routes/userRoutes')(app)
 require('./routes/smerRoutes')(app)
